@@ -1,5 +1,7 @@
 #include <map>
+#include <string>
 #include "Node.h"
+#include "fstream"
 
 using namespace std;
 

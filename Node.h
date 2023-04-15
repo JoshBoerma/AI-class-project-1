@@ -1,10 +1,10 @@
 #include <iostream>
+#include <string>
 
-struct{
-    string name;
-    int distance;
-}connection;
+using namespace std;
 
 class Node{
+    public:
 
-}
+    private:
+};
