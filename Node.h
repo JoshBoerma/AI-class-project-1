@@ -11,7 +11,8 @@ class Node{
         Node(){};
 
         //Member functions
-        void addConnection(string name, int distance);
+        void addConnection(string name, int distance); //Add connection to the node
+        void printNode() const; //Print out all data
 
     private:
         string name;

@@ -44,3 +44,14 @@ Graph::Graph(string filename){
 
     inputFile.close();
 }
+
+//Print out nodes in the map
+void Graph::printMap(){
+    cout << "Printing out all the nodes currently in the graph: " << endl << endl;
+    for(auto const& [origin, node] : graphNodes){
+        //Loop through all keys
+        node.printNode();
+        cout << endl;
+    }
+    
+}
