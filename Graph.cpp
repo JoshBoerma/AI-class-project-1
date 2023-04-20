@@ -27,14 +27,14 @@ Graph::Graph(string filename){
         if(city1 == "END" && city2 == "OF" && tempDist == "INPUT"){
             break;
         }
-        dist = (int)tempDist;
+        dist = stoi(tempDist);
 
         //Check if city1 and city2 exist in the graph, if not add them
         if(graphNodes.count(city1) == 0){
-            graphNodes.insert({city1, Node(city1)});
+            graphNodes[city1] = Node(city1);
         }
         if(graphNodes.count(city2) == 0){
-            graphNodes.insert({city2, Node(city2)});
+            graphNodes[city2] = Node(city2);
         }
 
         //Add connection between the cities

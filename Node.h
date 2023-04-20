@@ -8,6 +8,7 @@ class Node{
     public:
         //Constructor
         Node(string name);
+        Node(){};
 
         //Member functions
         void addConnection(string name, int distance);
