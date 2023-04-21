@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include "Graph.h"
+#include <queue>
+#include "PQData.h"
 
 using namespace std;
 
@@ -11,10 +13,15 @@ int main(int argc, char* argv[]){
         return -1;
     }
     string file = argv[1];
-    string city1 = argv[2];
-    string city2 = argv[3];
+    string origin = argv[2];
+    string destination = argv[3];
 
+    //Create graph from the file
     Graph city(file);
+
+    //Calculate path from origin city to destination
+    //city.findPath(origin, destination);
+
 
 
     return 0;

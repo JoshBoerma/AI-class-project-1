@@ -55,3 +55,31 @@ void Graph::printMap(){
     }
     
 }
+
+//Find path between nodes
+void Graph::findPath(string origin, string destination){
+    //Ensure origin and destination are in the graph
+    if(graphNodes.count(origin) == 0 || graphNodes.count(destination) == 0){
+        cerr << "The origin or destination is not present in the graph, invalid" << endl;
+        return;
+    }
+
+    iterations = 0;
+
+    //Create queue to keep track of distances
+    priority_queue<PQNode, vector<PQNode>, PQNodeCompare> nodeQueue;
+
+    //Keep track of path
+    map<string, Node*> path;
+    
+
+    //Don't exceed max specified iterations
+    while(iterations < MAX_ITERATIONS){
+        iterations++;
+    }
+
+    //If no connection is found
+    cout << "distance: infinity" << endl;
+    cout << "route:" << endl;
+    cout << "none" << endl;
+}
