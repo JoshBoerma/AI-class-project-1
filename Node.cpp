@@ -23,3 +23,17 @@ void Node::printNode() const{
         cout << connectingCity << " | " << distance << endl;
     }
 }
+
+//Print distance to connected city
+int Node::distTo(string name){
+    if(connections.count(name) == 0){
+        cerr << "No connection to the city" << endl;
+        return -1;
+    }
+    return connections[name];
+}
+
+//Getters
+string Node::getName() const{
+    return name;
+}

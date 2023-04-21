@@ -4,7 +4,6 @@
 #include "fstream"
 #include <iostream>
 #include <queue>
-#include "PQData.h"
 
 using namespace std;
 
@@ -20,15 +19,22 @@ class Graph{
     private:
         map<string, Node> graphNodes;
         const int MAX_ITERATIONS = 100000;
+
+        void printPath(map<string, Node*>* path, string* origin, string* destination);
 };
 
 struct PQNode{
     int distance;
     Node* cityNode;
-}
+
+    PQNode(int distance, Node* cityNode){
+        this->distance = distance;
+        this->cityNode = cityNode;
+    }
+};
 
 struct PQNodeCompare{
-    bool operator()(PQNode& const node1, PQNode& const node2){
+    bool operator()(PQNode& node1, PQNode& node2){
         return node1.distance < node2.distance;
     }
-}
+};

@@ -2,7 +2,6 @@
 #include <string>
 #include "Graph.h"
 #include <queue>
-#include "PQData.h"
 
 using namespace std;
 
@@ -20,7 +19,7 @@ int main(int argc, char* argv[]){
     Graph city(file);
 
     //Calculate path from origin city to destination
-    //city.findPath(origin, destination);
+    city.findPath(origin, destination);
 
 
 

@@ -64,22 +64,68 @@ void Graph::findPath(string origin, string destination){
         return;
     }
 
-    iterations = 0;
+    //If the origin is the same as the destination
+    if(origin == destination){
+        cout << "distance: 0 km" << endl;
+        cout << "route:" << endl;
+        cout << origin << " to " << destination << ", 0 km" << endl;
+    }
+
+    int iterations = 0;
 
     //Create queue to keep track of distances
     priority_queue<PQNode, vector<PQNode>, PQNodeCompare> nodeQueue;
+    nodeQueue.push(PQNode(0,&graphNodes[origin]));
 
     //Keep track of path
     map<string, Node*> path;
-    
+    path[origin] = nullptr;
 
     //Don't exceed max specified iterations
     while(iterations < MAX_ITERATIONS){
         iterations++;
+        if(nodeQueue.size() == 0){
+            //If we have no more nodes to explore, then the destination can't be reached
+            break;
+        }
+
+        //Get the front node
+        PQNode currentPQNode = nodeQueue.top();
+        nodeQueue.pop();
+
+        //Check if it is the goal node
+        if(currentPQNode.cityNode->getName() == destination){
+            printPath(&path, &origin, &destination);
+            return;
+        }
     }
 
     //If no connection is found
     cout << "distance: infinity" << endl;
     cout << "route:" << endl;
     cout << "none" << endl;
+}
+
+void Graph::printPath(map<string, Node*>* path, string* origin, string* destination){
+    string currentNode = *destination;
+    vector<string> correctPath;
+    int totalDist = 0;
+
+    //Put path into a vector for easier traversal
+    while(currentNode != *origin){
+        correctPath.push_back(currentNode);
+        totalDist += graphNodes[currentNode].distTo(path->at(currentNode)->getName());
+        currentNode = path->at(currentNode)->getName();
+    }
+
+    correctPath.push_back(currentNode);
+
+    //Print general info
+    cout << "distance: " << totalDist << endl;
+    cout << "route:" << endl;
+
+    //Traverse vector and print distances
+    for(int i = correctPath.size()-1; i > 0; i--){
+        cout << correctPath[i] << " to " << correctPath[i-1] << ", " << graphNodes[correctPath[i]].distTo(correctPath[i-1]) << " km" << endl;
+    }
 }

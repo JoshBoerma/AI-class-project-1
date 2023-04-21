@@ -13,6 +13,8 @@ class Node{
         //Member functions
         void addConnection(string name, int distance); //Add connection to the node
         void printNode() const; //Print out all data
+        string getName() const;
+        int distTo(string name);
 
     private:
         string name;
