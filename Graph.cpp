@@ -81,6 +81,9 @@ void Graph::findPath(string origin, string destination){
     map<string, Node*> path;
     path[origin] = nullptr;
 
+    //Keep track of already optimal nodes
+    map<string, bool> optimalNodes;
+
     //Don't exceed max specified iterations
     while(iterations < MAX_ITERATIONS){
         iterations++;
@@ -93,14 +96,30 @@ void Graph::findPath(string origin, string destination){
         PQNode currentPQNode = nodeQueue.top();
         nodeQueue.pop();
 
+        if(optimalNodes.count(currentPQNode->getName()) > 0){
+            //Node already optimized, go to next
+            continue;
+        }
+
+        //Mark current node as optimal
+        optimalNodes[currentPQNode->getName()] = true;
+
         //Check if it is the goal node
         if(currentPQNode.cityNode->getName() == destination){
             printPath(&path, &origin, &destination);
             return;
         }
+
+        //Get all connections from the node
+
+        //Loop per connected node
+
+            //Check if we have visted or not
+                //If not add to priority queue
+
     }
 
-    //If no connection is found
+    //If no connection is found/max iterations exceeded
     cout << "distance: infinity" << endl;
     cout << "route:" << endl;
     cout << "none" << endl;
