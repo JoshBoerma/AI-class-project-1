@@ -7,6 +7,24 @@
 
 using namespace std;
 
+struct PQNode{
+    int distance;
+    Node* cityNode;
+    int prev_index;
+
+    PQNode(int distance, Node* cityNode, int prev_index){
+        this->distance = distance;
+        this->cityNode = cityNode;
+        this->prev_index = prev_index;
+    }
+};
+
+struct PQNodeCompare{
+    bool operator()(PQNode& node1, PQNode& node2){
+        return node1.distance > node2.distance;
+    }
+};
+
 class Graph{
     public:
         Graph(string fileName);
@@ -20,21 +38,6 @@ class Graph{
         map<string, Node> graphNodes;
         const int MAX_ITERATIONS = 100000;
 
-        void printPath(map<string, Node*>* path, string* origin, string* destination);
+        void printPath(vector<PQNode*>& path, string origin, string destination, int currentIndex);
 };
 
-struct PQNode{
-    int distance;
-    Node* cityNode;
-
-    PQNode(int distance, Node* cityNode){
-        this->distance = distance;
-        this->cityNode = cityNode;
-    }
-};
-
-struct PQNodeCompare{
-    bool operator()(PQNode& node1, PQNode& node2){
-        return node1.distance < node2.distance;
-    }
-};
