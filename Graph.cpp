@@ -73,6 +73,7 @@ void Graph::findPath(string origin, string destination){
     }
 
     int iterations = 0;
+    int maxIterations = graphNodes.size() * MAX_ITERATIONS_SCALE;
 
     //Create queue to keep track of distances
     priority_queue<PQNode*, vector<PQNode*>, PQNodeCompare> nodeQueue;
@@ -83,7 +84,7 @@ void Graph::findPath(string origin, string destination){
     nodeQueue.push(firstNode);
 
     //Don't exceed max specified iterations
-    while(iterations < MAX_ITERATIONS){
+    while(iterations < maxIterations){
         if(nodeQueue.size() == 0){
             //If we have no more nodes to explore, then the destination can't be reached
             break;

@@ -21,7 +21,5 @@ int main(int argc, char* argv[]){
     //Calculate path from origin city to destination
     city.findPath(origin, destination);
 
-
-
     return 0;
 }

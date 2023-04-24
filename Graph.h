@@ -36,7 +36,7 @@ class Graph{
         void findPath(string origin, string destination);
     private:
         map<string, Node> graphNodes;
-        const int MAX_ITERATIONS = 100000;
+        const int MAX_ITERATIONS_SCALE = 1000;
 
         void printPath(PQNode* endNode, string origin, string destination);
 
