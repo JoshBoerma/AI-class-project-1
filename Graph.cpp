@@ -75,11 +75,11 @@ void Graph::findPath(string origin, string destination){
     int iterations = 0;
 
     //Create queue to keep track of distances
-    priority_queue<PQNode, vector<PQNode>, PQNodeCompare> nodeQueue;
-    vector<PQNode*> pathTracker;
+    priority_queue<PQNode*, vector<PQNode*>, PQNodeCompare> nodeQueue;
+    vector<PQNode*> nodeHolder;
 
-    PQNode firstNode(0, &graphNodes[origin], -1);
-    pathTracker.push_back(&firstNode);
+    PQNode* firstNode = new PQNode(0, &graphNodes[origin], nullptr);
+    nodeHolder.push_back(firstNode);
     nodeQueue.push(firstNode);
 
     //Don't exceed max specified iterations
@@ -90,26 +90,25 @@ void Graph::findPath(string origin, string destination){
         }
 
         //Get the front node
-        PQNode currentPQNode = nodeQueue.top();
+        PQNode* currentPQNode = nodeQueue.top();
         nodeQueue.pop();
 
         //Check if it is the goal node
-        if(currentPQNode.cityNode->getName() == destination){
-            printPath(pathTracker, origin, destination, iterations);
+        if(currentPQNode->cityNode->getName() == destination){
+            printPath(currentPQNode, origin, destination);
             return;
         }
 
         //Add all connected nodes to the queue and the vector
-        map<string, int>* connections = currentPQNode.cityNode->getConnections();
+        map<string, int>* connections = currentPQNode->cityNode->getConnections();
         for(auto i : *connections){
             //Creating node
-            int dist = currentPQNode.distance + i.second;
+            int dist = currentPQNode->distance + i.second;
             Node* newNode = &graphNodes[i.first];
-            int prevNode = iterations;
-            PQNode nextCity(dist, newNode, prevNode);
+            PQNode* nextCity = new PQNode(dist, newNode, currentPQNode);
 
             //Adding it to vector and pq
-            pathTracker.push_back(&nextCity);
+            nodeHolder.push_back(nextCity);
             nodeQueue.push(nextCity);
         }
 
@@ -122,24 +121,41 @@ void Graph::findPath(string origin, string destination){
     cout << "none" << endl;
 }
 
-void Graph::printPath(vector<PQNode*>& path, string origin, string destination, int currentIndex){
-    int totalDistance = path[currentIndex]->distance;
+void Graph::printPath(PQNode* endNode, string origin, string destination){
+    int totalDistance = endNode->distance;
 
-    cout << "distance: " << totalDistance << endl;
+    cout << "distance: " << totalDistance << " km" << endl;
 
     //Store all data for printing
     vector<string> cityPath;
-    PQNode* currentNode = path[currentIndex];
-    while(currentNode->prev_index != -1){
+    PQNode* currentNode = endNode;
+    while(currentNode->prevNode != nullptr){
         cityPath.push_back(currentNode->cityNode->getName());
-        currentNode = path[currentNode->prev_index];
+        currentNode = currentNode->prevNode;
     }
     cityPath.push_back(origin); //Need to also push the origin city
     
     //Iterate through and print
     cout << "route:" << endl;
-    for(int i = cityPath.size()-1; i--; i > 0){
+    for(int i = cityPath.size()-1; i > 0; i--){
         cout << cityPath[i] << " to " << cityPath[i-1] << ", ";
         cout << graphNodes[cityPath[i]].distTo(cityPath[i-1]) << " km" << endl;
+    }
+}
+
+
+void Graph::printPQNodes(vector<PQNode*>& nodeHolder){
+    cout << "Printing PQNodes: " << endl << endl;
+
+    for(int i = 0; i < nodeHolder.size(); i++){
+        cout << "currentNode: " << i << endl;
+        cout << "distance: " << nodeHolder[i]->distance << endl;
+        cout << "Node name: " << nodeHolder[i]->cityNode->getName() << endl;
+        if(nodeHolder[i]->prevNode != nullptr){
+            cout << "Previous node: " << nodeHolder[i]->prevNode->cityNode->getName() << endl;
+        }else{
+            cout << "null" << endl;
+        }
+        cout << endl;
     }
 }
