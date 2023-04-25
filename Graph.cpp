@@ -48,9 +48,9 @@ Graph::Graph(string filename){
 //Print out nodes in the map
 void Graph::printMap(){
     cout << "Printing out all the nodes currently in the graph: " << endl << endl;
-    for(auto const& [origin, node] : graphNodes){
+    for(auto const& node : graphNodes){
         //Loop through all keys
-        node.printNode();
+        node.second.printNode();
         cout << endl;
     }
     

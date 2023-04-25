@@ -19,8 +19,8 @@ void Node::printNode() const{
 
 
     cout << "Connecting city | distance" << endl;
-    for(auto const& [connectingCity, distance] : connections){
-        cout << connectingCity << " | " << distance << endl;
+    for(auto const& cities : connections){
+        cout << cities.first << " | " << cities.second << endl;
     }
 }
 
