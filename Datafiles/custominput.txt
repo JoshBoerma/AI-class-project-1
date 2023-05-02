@@ -1,0 +1,16 @@
+A B 5
+B C 10
+A C 7
+C D 12
+A E 2
+E D 9
+E F 5
+F G 12
+G H 3
+F H 14
+Z Y 2
+Y X 1
+X W 4
+W Z 2
+END OF INPUT
+

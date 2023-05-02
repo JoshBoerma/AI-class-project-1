@@ -1,0 +1,127 @@
+Tests for input1.txt:
+
+Test 1:
+
+Input:
+.\find_route.exe ../Datafiles/input1.txt Berlin Bremen
+
+Output:
+distance: 407 km
+route:
+Berlin to Hamburg, 291 km
+Hamburg to Bremen, 116 km
+
+Test 2:
+
+Input:
+.\find_route.exe ../Datafiles/input1.txt Berlin London
+
+Output:
+distance: infinity
+route:
+none
+
+Test 3:
+
+Input:
+.\find_route.exe ../Datafiles/input1.txt London Birmingham
+
+Output:
+distance: 117 km
+route:
+London to Birmingham, 117 km
+
+Test 4:
+
+Input:
+.\find_route.exe ../Datafiles/input1.txt Munich Luebeck
+
+Output:
+distance: 923 km
+route:
+Munich to Nuremberg, 171 km
+Nuremberg to Leipzig, 263 km
+Leipzig to Magdeburg, 125 km
+Magdeburg to Hannover, 148 km
+Hannover to Hamburg, 153 km
+Hamburg to Luebeck, 63 km
+
+Test 5:
+
+Input:
+.\find_route.exe ../Datafiles/input1.txt Saarbruecken Dresden
+distance: 781 km
+route:
+Saarbruecken to Frankfurt, 177 km
+Frankfurt to Nuremberg, 222 km
+Nuremberg to Leipzig, 263 km
+Leipzig to Dresden, 119 km
+
+
+Tests for custominput.txt:
+
+Test 1:
+
+Input: 
+.\find_route.exe ../Datafiles/custominput.txt A B
+
+Output:
+distance: 5 km
+route:
+A to B, 5 km
+
+Test 2:
+
+Input:
+.\find_route.exe ../Datafiles/custominput.txt A D
+
+Output:
+distance: 11 km
+route:
+A to E, 2 km
+E to D, 9 km
+
+Test 3:
+
+Input:
+.\find_route.exe ../Datafiles/custominput.txt A Z
+
+Output:
+distance: infinity
+route:
+none
+
+Test 4:
+
+Input:
+.\find_route.exe ../Datafiles/custominput.txt F F
+
+Output:
+distance: 0 km
+route:
+F to F, 0 km
+
+Test 5:
+
+Input:
+.\find_route.exe ../Datafiles/custominput.txt A H
+
+Output:
+distance: 21 km
+route:
+A to E, 2 km
+E to F, 5 km
+F to H, 14 km
+
+Test 6:
+
+Input:
+.\find_route.exe ../Datafiles/custominput.txt H A 
+
+Output:
+distance: 21 km
+route:
+H to F, 14 km
+F to E, 5 km
+E to A, 2 km
+
