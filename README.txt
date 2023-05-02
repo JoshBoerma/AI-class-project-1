@@ -15,4 +15,6 @@
 
     The program can now be run in this format (in the build directory):
     .\find_route.exe ../Datafiles/<input_file_name> <city1> <city2>
-    
+
+Sidenote: Any additional data files should either be put in the datafiles directory and use the same command structure as above
+or if located else where replace ../Datafiles/<input_file_name> with the path to the file instead.
